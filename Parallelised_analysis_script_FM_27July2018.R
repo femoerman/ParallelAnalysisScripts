@@ -16,6 +16,12 @@ library(parallel)
 library(doParallel)
 library(foreach)
 
+#Define memory to be allocated
+mem.per.identifier <- c(30000)
+mem.per.linker <- c(10000)
+mem.per.overlay <- c(60000)
+machine.ram <- c(250000)
+
 # UNIX
 # set paths to ImageJ and particle linker standalone
 IJ.path.main <- "/home/mendel-himself/ImageJ"
@@ -145,6 +151,7 @@ text2 <- c(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16
 }
 ident[32:52] <- text1
 ident[61:82] <- text2
+ident[85] <- paste("mem.per.identifier <- c(", mem.per.identifier, ")")
 
 
 for (foldername in folderlist){
@@ -196,10 +203,6 @@ for (foldername in folderlist){
 ######################################################################
 # VIDEO ANALYSIS
 #Define number of parallel processes
-mem.per.identifier <- c(30000)
-mem.per.linker <- c(10000)
-mem.per.overlay <- c(60000)
-machine.ram <- c(250000)
 processes.identifier <- min(detectCores()-1,machine.ram %/% mem.per.identifier)
 processes.linker <- min(detectCores()-1,machine.ram %/% mem.per.linker)
 processes.overlay <- min(detectCores()-1,machine.ram %/% mem.per.overlay)
