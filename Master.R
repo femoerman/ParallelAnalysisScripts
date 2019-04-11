@@ -97,7 +97,6 @@ to.particlelinker <- to.particlelinker.main
 #copy IJ to new folder, as well as identification script
 #Modify particle identification script
 ident = readLines("Parallelised_analysis_script_FM_27July2018_Identification.R")
-ident_original <- readLines("Parallelised_analysis_script_FM_27July2018.R")
 
 #Prepare code that needs to be changed in identification script
 {
